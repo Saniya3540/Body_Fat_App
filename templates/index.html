@@ -1,1 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Body Fat Predictor</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        body {
+            font-family: Arial;
+            min-height: 100vh;
+            background-image: url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1500');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.88);
+            max-width: 550px;
+            width: 100%;
+            padding: 35px;
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+        }
+
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 25px;
+            font-size: 28px;
+        }
+
+        label {
+            font-weight: bold;
+            color: #2c3e50;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 16px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 15px;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #2c3e50;
+        }
+
+        .button-row {
+            display: flex;
+            gap: 12px;
+            margin-top: 5px;
+        }
+
+        .btn-predict {
+            flex: 2;
+            padding: 13px;
+            background: #2c3e50;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 17px;
+            cursor: pointer;
+        }
+
+        .btn-predict:hover {
+            background: #1a252f;
+        }
+
+        .btn-clear {
+            flex: 1;
+            padding: 13px;
+            background: #e74c3c;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 17px;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-clear:hover {
+             background: #c0392b;
+        }
+
+        .result {
+            text-align: center;
+            font-size: 26px;
+            color: green;
+            margin-top: 20px;
+            font-weight: bold;
+            background: #eaffea;
+            padding: 15px;
+            border-radius: 10px;
+            border: 2px solid green;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 25px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <h1>💪 Body Fat % Predictor</h1>
+        <p class="subtitle">Enter your body measurements below</p>
+
+        <form action="/predict" method="POST" id="myForm">
+
+            <label>Age (years)</label>
+            <input type="number" name="age"
+                   value="{{ age if age }}"
+                   placeholder="e.g. 25" required>
+
+            <label>Weight (kg)</label>
+            <input type="number" name="weight"
+                   value="{{ weight if weight }}"
+                   placeholder="e.g. 70" required>
+
+            <label>Height (inches)</label>
+            <input type="number" name="height"
+                   value="{{ height if height }}"
+                   placeholder="e.g. 70" required>
+
+            <label>Abdomen (cm)</label>
+            <input type="number" name="abdomen" step="0.1"
+                   value="{{ abdomen if abdomen }}"
+                   placeholder="e.g. 80" required>
+
+            <label>Chest (cm)</label>
+            <input type="number" name="chest" step="0.1"
+                   value="{{ chest if chest }}"
+                   placeholder="e.g. 90" required>
+
+            <label>Hip (cm)</label>
+            <input type="number" name="hip" step="0.1"
+                   value="{{ hip if hip }}"
+                   placeholder="e.g. 95" required>
+
+            <!-- Two buttons side by side -->
+            <div class="button-row">
+                <button type="submit" class="btn-predict">
+                    Predict Body Fat %
+                </button>
+
+                <a href="/" class="btn-clear">
+                    🗑️ Clear
+                </a>
+
+            </div>
+
+        </form>
+
+        {% if prediction %}
+        <div class="result" id="result">
+            🏃 Predicted Body Fat : {{ prediction }} %
+        </div>
+        {% endif %}
+
+    </div>
+
+</body>
+</html>
