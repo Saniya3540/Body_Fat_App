@@ -1,6 +1,6 @@
 # Body Fat Recommendation System - ANN Project
 
-This is an Artificial Neural Network (ANN) based Body Fat Prediction System built using Python and Deep Learning techniques.
+This is an Artificial Neural Network based Body Fat Prediction System built using Python and Deep Learning techniques.
 
 ## Live Demo
 
@@ -24,10 +24,3 @@ https://huggingface.co/spaces/saniya354/bodyfat-predicator
 * TensorFlow / Keras
 * Streamlit
 
-## Dataset
-
-The dataset was not uploaded because of large file size.
-
-## Author
-
-Saniya Shaikh
